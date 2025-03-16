@@ -1,0 +1,34 @@
+.skill-table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 20px auto; 
+  }
+  
+
+  .table-header {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    background-color: #ff0000; 
+    font-weight: bold; 
+  }
+  
+  .table-data {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+
+  td[datalevel*="Advance"]{
+    color: green;
+  }
+
+  td[datalevel*="Intermediate"]{
+    color: yellow;
+  }
+  td[datalevel*="Basic"]{
+    color: red;
+  }
+  td[datalevel*="Expert"]{
+    color: blue;
+  }
