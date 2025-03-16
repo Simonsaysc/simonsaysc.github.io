@@ -17,5 +17,6 @@
   .td {
     border: 1px solid black;
     padding: 8px;
+    color: green;
     text-align: left;
   }
