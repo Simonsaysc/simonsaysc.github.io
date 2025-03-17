@@ -57,9 +57,9 @@
       <input type="text" id="instext" name="instext"></input>
       <div id="Modtext">Change this part with text of your liking</div>
       <script>
-        const button = document.GetElementById("showButton");
-        const inputText = document.GetElementById("instext");
-        const changText = document.GetElementById("Modtext");
+        const button = document.getElementById("showButton");
+        const inputText = document.getElementById("instext");
+        const changText = document.getElementById("Modtext");
         button.addEventListener("click", function(){
             const enText = inputText.value;
             changText.textContent = enText;
