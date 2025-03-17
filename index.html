@@ -51,5 +51,19 @@
           <td class="td">Native</td>
         </tr>
       </table>    
+
+      <button id="showButton">Submit text</button>
+      <label for="instext">Insert text: </labellabel>
+      <input type="text" id="instext" name="instext"><br><br>
+      <div id="Modtext">Change this part with text of your liking</divdiv>
+      <script>
+        const button = document.GetElementById("showButton");
+        const inputText = document.GetElementById("instext");
+        const changText = document.GetElementById("Modtext");
+        button.addEventListener("click", function(){
+            const enText = inputText.value;
+            changText.textContent = enText;
+        });
+      </script>
 </body>
 </html>
