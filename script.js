@@ -1,13 +1,13 @@
 const apiKey = 'Yf1d02c8f1bb643c7af37bb441189b3aa'; 
 const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
-addEventListener("DOMContentLoaded", fetch);
-
-fetch(apiUrl).then(response => {return response.json()})
+addEventListener("DOMContentLoaded", fetch(apiUrl).then(response => {return response.json()})
 .then(data => {
     console.log(data); 
     const firstTenArticles = data.articles.slice(0, 10);
     displayNews(firstTenArticles); 
-  });
+  }))
+
+
 
 function displayNews(articles) {
     const newsContainer = document.getElementById('news-container');
