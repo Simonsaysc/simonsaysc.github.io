@@ -1,5 +1,5 @@
-const apiKey = 'Yf1d02c8f1bb643c7af37bb441189b3aa'; 
-const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
+const apiKey = f1d02c8f1bb643c7af37bb441189b3aa; 
+const apiUrl = GET `https://newsapi.org/v2/everything?q=Apple&from=2025-03-19&sortBy=popularity&apiKey=${apiKey}`;
 
 async function fetchAndDisplayNews() {
   try {
