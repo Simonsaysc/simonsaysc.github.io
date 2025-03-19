@@ -1,5 +1,5 @@
 const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace this with your ACTUAL API key!
-const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
+const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=f1d02c8f1bb643c7af37bb441189b3aa`;
 
 async function fetchAndDisplayNews() {
   try {
