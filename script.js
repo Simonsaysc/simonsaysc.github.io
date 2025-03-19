@@ -1,5 +1,5 @@
 const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; 
-const apiUrl = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f1d02c8f1bb643c7af37bb441189b3aa;"
+const apiUrl = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f1d02c8f1bb643c7af37bb441189b3aa";
 
 async function fetchAndDisplayNews() {
   try {
