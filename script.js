@@ -1,12 +1,20 @@
 const apiKey = 'Yf1d02c8f1bb643c7af37bb441189b3aa'; 
 const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
-addEventListener("DOMContentLoaded", fetch(apiUrl).then(response => {return response.json()})
-.then(data => {
-    console.log(data); 
-    const firstTenArticles = data.articles.slice(0, 10);
-    displayNews(firstTenArticles); 
-  }))
 
+async function fetchAndDisplayNews() {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    const firstTenArticles = data.articles.slice(0, 10);
+    displayNews(firstTenArticles);
+  } catch (error) {
+    console.error("Error fetching or processing news:", error);
+  }
+}
 
 
 function displayNews(articles) {
@@ -42,4 +50,7 @@ function displayNews(articles) {
       newsContainer.appendChild(col);
     });
 };
-};
+}
+addEventListener("DOMContentLoaded", () => {
+  fetchAndDisplayNews();
+});
