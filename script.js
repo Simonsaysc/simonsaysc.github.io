@@ -10,7 +10,7 @@ addEventListener("DOMContentLoaded", fetch(apiUrl).then(response => {return resp
 
 
 function displayNews(articles) {
-    const newsContainer = document.getElementById('news-container');
+    const newsContainer = document.getElementById("news-container");
     if(newsContainer){
       newsContainer.innerHTML = '';
     
