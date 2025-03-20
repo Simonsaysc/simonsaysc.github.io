@@ -84,5 +84,5 @@ function displayNews(articles) {
   }
 }
 addEventListener("DOMContentLoaded", () => {
-  fetchAndDisplayNewsXHR();
+  fetchAndDisplayNews();
 });
