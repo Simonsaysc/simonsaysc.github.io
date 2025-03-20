@@ -1,5 +1,5 @@
-const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
-const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
+const apiKey = "86c364a896d487d2275e174a45f0bc60"; // Replace with your key
+const apiUrl = `url = 'https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=${apiKey}`;
 function fetchNewsWithXHR() {
   return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -33,8 +33,8 @@ async function fetchAndDisplayNewsXHR(){
 }
 
 async function fetchAndDisplayNews() {
-  const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
-  const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
+  const apiKey = "86c364a896d487d2275e174a45f0bc60"; // Replace with your key
+  const apiUrl = `url = 'https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=${apiKey}`;
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
