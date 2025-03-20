@@ -1,5 +1,37 @@
-const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace this with your ACTUAL API key!
-const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=f1d02c8f1bb643c7af37bb441189b3aa`;
+function fetchNewsWithXHR() {
+  return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
+      const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
+
+      xhr.open("GET", apiUrl);
+
+      xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+              resolve(JSON.parse(xhr.responseText));
+          } else {
+              reject(new Error(`Request failed with status ${xhr.status}`));
+          }
+      };
+
+      xhr.onerror = function () {
+          reject(new Error("Network error"));
+      };
+
+      xhr.send();
+  });
+}
+
+async function fetchAndDisplayNewsXHR(){
+  try {
+     const data = await fetchNewsWithXHR();
+     console.log(data);
+     const firstTenArticles = data.articles.slice(0, 10);
+     displayNews(firstTenArticles);
+  } catch (error){
+      console.log("Error fetching or processing news:", error)
+  }
+}
 
 async function fetchAndDisplayNews() {
   try {
@@ -51,5 +83,5 @@ function displayNews(articles) {
   }
 }
 addEventListener("DOMContentLoaded", () => {
-  fetchAndDisplayNews();
+  fetchAndDisplayNewsXHR();
 });
