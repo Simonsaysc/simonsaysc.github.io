@@ -1,9 +1,8 @@
+const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
+const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
 function fetchNewsWithXHR() {
   return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
-      const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
-
       xhr.open("GET", apiUrl);
 
       xhr.onload = function () {
