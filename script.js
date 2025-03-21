@@ -1,36 +1,5 @@
 const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
 const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
-function fetchNewsWithXHR() {
-  return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("GET", apiUrl);
-
-      xhr.onload = function () {
-          if (xhr.status >= 200 && xhr.status < 300) {
-              resolve(JSON.parse(xhr.responseText));
-          } else {
-              reject(new Error(`Request failed with status ${xhr.status}`));
-          }
-      };
-
-      xhr.onerror = function () {
-          reject(new Error("Network error"));
-      };
-
-      xhr.send();
-  });
-}
-
-async function fetchAndDisplayNewsXHR(){
-  try {
-     const data = await fetchNewsWithXHR();
-     console.log(data);
-     const firstTenArticles = data.articles.slice(0, 10);
-     displayNews(firstTenArticles);
-  } catch (error){
-      console.log("Error fetching or processing news:", error)
-  }
-}
 
 async function fetchAndDisplayNews() {
   const apiKey = "f1d02c8f1bb643c7af37bb441189b3aa"; // Replace with your key
@@ -54,35 +23,65 @@ function displayNews(articles) {
   if (newsContainer) {
     newsContainer.innerHTML = "";
 
-    articles.forEach((article) => {
-      const col = document.createElement("div");
-      col.classList.add("col-md-4", "mb-4");
+    // Create the accordion container
+    const accordion = document.createElement("div");
+    accordion.classList.add("accordion");
+    accordion.id = "newsAccordion";
+    newsContainer.appendChild(accordion);
 
-      const articleElement = document.createElement("div");
-      articleElement.classList.add("article", "card", "h-100");
+    articles.forEach((article, index) => {
+      // Create accordion item
+      const accordionItem = document.createElement("div");
+      accordionItem.classList.add("accordion-item");
 
-      const title = document.createElement("h5");
-      title.textContent = article.title;
-      title.classList.add("card-title");
-      articleElement.appendChild(title);
+      // Create accordion header
+      const accordionHeader = document.createElement("h2");
+      accordionHeader.classList.add("accordion-header");
+      accordionHeader.id = `heading-${index}`;
 
+      // Create accordion button
+      const accordionButton = document.createElement("button");
+      accordionButton.classList.add("accordion-button", "collapsed");
+      accordionButton.type = "button";
+      accordionButton.setAttribute("data-bs-toggle", "collapse");
+      accordionButton.setAttribute("data-bs-target", `#collapse-${index}`);
+      accordionButton.setAttribute("aria-expanded", "false");
+      accordionButton.setAttribute("aria-controls", `collapse-${index}`);
+      accordionButton.textContent = article.title;
+      accordionHeader.appendChild(accordionButton);
+
+      // Create accordion collapse
+      const accordionCollapse = document.createElement("div");
+      accordionCollapse.id = `collapse-${index}`;
+      accordionCollapse.classList.add("accordion-collapse", "collapse");
+      accordionCollapse.setAttribute("aria-labelledby", `heading-${index}`);
+      accordionCollapse.setAttribute("data-bs-parent", "#newsAccordion");
+
+      // Create accordion body
+      const accordionBody = document.createElement("div");
+      accordionBody.classList.add("accordion-body");
+      
       const description = document.createElement("p");
       description.textContent = article.description || "No description available.";
-      description.classList.add("card-text");
-      articleElement.appendChild(description);
+      accordionBody.appendChild(description);
 
       const link = document.createElement("a");
       link.href = article.url;
       link.textContent = "Read more";
       link.target = "_blank";
       link.classList.add("btn", "btn-primary");
-      articleElement.appendChild(link);
+      accordionBody.appendChild(link);
+      
+      accordionCollapse.appendChild(accordionBody);
 
-      col.appendChild(articleElement);
-      newsContainer.appendChild(col);
+      accordionItem.appendChild(accordionHeader);
+      accordionItem.appendChild(accordionCollapse);
+      accordion.appendChild(accordionItem);
     });
   }
 }
+
+
 addEventListener("DOMContentLoaded", () => {
   fetchAndDisplayNews();
 });
